@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>¡Qué Fiesta! — Un año de fiestas hispanas</title>
+  <meta name="description" content="Five festivals of the Spanish-speaking world, one calendar year: Carnaval de Barranquilla, Las Fallas, Inti Raymi, La Tomatina and Día de Muertos. A Spanish DA project.">
+  <meta name="theme-color" content="#1A1140">
+  <meta property="og:title" content="¡Qué Fiesta! — Un año de fiestas hispanas">
+  <meta property="og:description" content="Cut paper, fire, sun, tomatoes and marigolds: a year of Hispanic festivals.">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="/fonts/shrikhand.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/recursive.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/css/styles.css">
+  <script type="module" src="/js/app.js"></script>
+</head>
+<body>
+  <a class="skip" href="#rueda">Skip to the festival wheel</a>
+
+  <header class="nav" id="nav">
+    <a class="nav__brand" href="#top" aria-label="¡Qué Fiesta! — back to top">¡Qué Fiesta!</a>
+    <nav aria-label="Sections">
+      <ul class="nav__links">
+        <li><a href="#rueda">La rueda</a></li>
+        <li><a href="#fiestas">Las fiestas</a></li>
+        <li><a href="#loteria">Lotería</a></li>
+        <li><a href="#visitas">Visitas</a></li>
+        <li><a href="#equipo">Equipo</a></li>
+      </ul>
+    </nav>
+    <button class="nav__sound" id="soundToggle" type="button" aria-pressed="true" title="Speak Spanish words aloud when tapped">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor"/><path class="wave" d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      <span>Voz</span>
+    </button>
+  </header>
+
+  <main id="top">
+    <!-- ═════════════ HERO: the papel picado banner ═════════════ -->
+    <section class="hero" aria-labelledby="hero-title">
+      <canvas class="hero__confeti" id="confeti" aria-hidden="true"></canvas>
+      <div class="guirnalda" id="guirnalda" aria-hidden="true"></div>
+
+      <div class="hero__banner-wrap" id="bannerWrap">
+        <h1 id="hero-title" class="visually-hidden">¡Qué fiesta! — A year of Hispanic festivals</h1>
+        <svg class="hero__banner" id="banner" viewBox="0 0 1000 640" role="img" aria-label="¡Qué fiesta! cut out of pink papel picado">
+          <defs>
+            <mask id="cutouts" maskUnits="userSpaceOnUse" x="0" y="0" width="1000" height="640">
+              <rect width="1000" height="640" fill="#fff"/>
+              <g id="maskShapes" fill="#000"></g>
+              <text x="500" y="282" text-anchor="middle" class="banner-type" font-size="214">¡Qué</text>
+              <text x="500" y="492" text-anchor="middle" class="banner-type" font-size="214">fiesta!</text>
+            </mask>
+            <linearGradient id="paperShade" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0" stop-color="#fff" stop-opacity=".18"/>
+              <stop offset=".5" stop-color="#fff" stop-opacity="0"/>
+              <stop offset="1" stop-color="#000" stop-opacity=".18"/>
+            </linearGradient>
+          </defs>
+          <g mask="url(#cutouts)">
+            <path id="bannerPaper" fill="var(--rosa)"/>
+            <path id="bannerShade" fill="url(#paperShade)"/>
+            <g id="bannerFolds" stroke="#000" stroke-opacity=".08" stroke-width="2"></g>
+          </g>
+          <line x1="0" y1="22" x2="1000" y2="22" stroke="var(--papel)" stroke-width="3" opacity=".7"/>
+          <g id="bannerFold" fill="var(--rosa-dark)"></g>
+        </svg>
+      </div>
+
+      <div class="hero__copy">
+        <p class="hero__lede">Un año de fiestas del mundo hispano.<br><span>Five festivals, five friends, one calendar year — from Colombia's carnival in February to Mexico's marigolds in November.</span></p>
+        <p class="hero__count" id="heroCount" aria-live="polite">Consultando el calendario…</p>
+        <p class="hero__tip">Hover or tap any <span class="pal pal--demo" tabindex="0"><span lang="es">palabra</span><span class="pal__en" role="tooltip">word</span></span> to read it in English. Tapping also says it out loud.</p>
+      </div>
+    </section>
+
+    <!-- ═════════════ RUEDA DEL AÑO (Sravan) ═════════════ -->
+    <section class="rueda" id="rueda" aria-labelledby="rueda-title">
+      <div class="rueda__text">
+        <h2 id="rueda-title">La rueda del año</h2>
+        <p>Every festival sits on the day it happens. Spin the wheel — drag it, click a marker or use the arrow keys — and it will tell you how long until the next fiesta.</p>
+      </div>
+      <div class="rueda__body">
+        <div class="rueda__dial-wrap">
+          <svg class="rueda__dial" id="dial" viewBox="-320 -320 640 640" tabindex="0" role="group" aria-label="Calendar wheel. Use left and right arrow keys to move between festivals."></svg>
+          <svg class="rueda__pointer" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 38 L6 8 Q20 0 34 8 Z" fill="var(--papel)"/></svg>
+        </div>
+        <div class="rueda__panel" id="ruedaPanel" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <!-- ═════════════ THE FIVE CHAPTERS ═════════════ -->
+    <div id="fiestas" class="fiestas" aria-label="The five festivals">
+      <p class="loading" id="loading">Colgando el papel picado…</p>
+    </div>
+
+    <!-- ═════════════ LA GRAN LOTERÍA (Mohit) ═════════════ -->
+    <section class="loteria" id="loteria" aria-labelledby="loteria-title">
+      <div class="loteria__head">
+        <h2 id="loteria-title">La Gran Lotería</h2>
+        <p>Ten cards, two from every chapter. The caller draws a card, you choose the answer. Answers are checked on our server, so no peeking at the page source.</p>
+      </div>
+      <div class="loteria__table" id="loteriaGame">
+        <div class="loteria__start">
+          <label for="loteriaName">Tu nombre <span>(for the leaderboard — optional)</span></label>
+          <input id="loteriaName" maxlength="24" autocomplete="nickname" placeholder="p. ej. Sofía">
+          <button class="btn btn--ink" id="loteriaStart" type="button">Barajar y jugar</button>
+        </div>
+      </div>
+      <aside class="loteria__board" aria-labelledby="board-title">
+        <h3 id="board-title">Los mejores</h3>
+        <ol id="leaderboard"><li class="muted">Nadie todavía. ¡Sé el primero!</li></ol>
+      </aside>
+    </section>
+
+    <!-- ═════════════ LIBRO DE VISITAS (Tanmay) ═════════════ -->
+    <section class="visitas" id="visitas" aria-labelledby="visitas-title">
+      <div class="visitas__form-wrap">
+        <h2 id="visitas-title">Libro de visitas</h2>
+        <p>Send us a postcard. Which fiesta would you travel to first? Try writing a few words en español.</p>
+        <form class="visitas__form" id="visitasForm" novalidate>
+          <div class="field">
+            <label for="vName">Nombre</label>
+            <input id="vName" name="name" maxlength="30" required autocomplete="nickname">
+          </div>
+          <div class="field">
+            <label for="vFiesta">Mi fiesta favorita</label>
+            <select id="vFiesta" name="fiesta" required></select>
+          </div>
+          <div class="field">
+            <label for="vMsg">Mensaje <span class="field__count" id="vCount">0 / 240</span></label>
+            <textarea id="vMsg" name="message" maxlength="240" rows="4" required placeholder="¡Me encanta la Tomatina! Quiero ir con mis amigos…"></textarea>
+          </div>
+          <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <p class="field__error" id="vError" role="alert"></p>
+          <button class="btn btn--ink" type="submit">Enviar postal</button>
+        </form>
+      </div>
+      <div class="visitas__wall" id="postales" aria-live="polite" aria-label="Postcards from visitors"></div>
+    </section>
+  </main>
+
+  <!-- ═════════════ EQUIPO ═════════════ -->
+  <footer class="equipo" id="equipo" aria-labelledby="equipo-title">
+    <div class="guirnalda guirnalda--footer" id="guirnalda2" aria-hidden="true"></div>
+    <h2 id="equipo-title">El equipo</h2>
+    <p class="equipo__sub">Digital Assignments II &amp; III — Creative Exploration of the Hispanic World. Topic: <span lang="es">fiestas</span>. Each of us owns one festival and one part of the site.</p>
+    <ul class="equipo__list" id="equipoList"></ul>
+    <p class="equipo__fine">All illustrations on this site are original SVG drawings made by the team. Facts are sourced at the end of each chapter. <span lang="es">¡Gracias por visitarnos!</span></p>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <noscript><p class="noscript">This site needs JavaScript to draw its festivals. <span lang="es">¡Actívalo, por favor!</span></p></noscript>
+</body>
+</html>
